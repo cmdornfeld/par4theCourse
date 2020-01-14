@@ -26,9 +26,9 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+// router.get('/', (req, res) => {
     
-});
+// });
 
 /**
  * POST route template
