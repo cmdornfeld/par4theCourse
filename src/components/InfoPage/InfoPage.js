@@ -13,7 +13,7 @@ class InfoPage extends Component {
         <ul>
           {this.props.details.map(round => (
             <li>
-              User ID: {round.user_id}, Course ID: {round.course_id}, Tee ID: {round.tee_id}
+              Score: {round.score}, Course Name: {round.name}, Round ID: {round.round_id}
             </li>
           ))}
         </ul>
