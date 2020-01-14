@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 class NewRound extends Component {
   componentDidMount() {
     this.props.dispatch({type: 'GET_COURSES'});
+    this.props.dispatch({type: 'GET_COURSE_TEES'})
   }
 
   render() {
@@ -19,8 +20,17 @@ class NewRound extends Component {
           ))}
         </select>
         <br/>
-          <input type="radio" value="9 Holes"/> 9 holes
-          <input type="radio" value="18 Holes"/> 18 holes
+          <label>9 holes</label><input type="radio" name="holes" value="9 Holes"/>
+          <label>18 holes</label><input type="radio" name="holes" value="18 Holes"/>
+        <br/>
+        {JSON.stringify(this.props.tees)}
+        <select>
+          {this.props.tees.map(tee => (
+            <option key={tee.id} value={tee.name}>
+              {tee.name} (distance: {tee.distance})
+            </option>
+          ))}
+        </select>
       </div>
     );
   }
@@ -28,6 +38,7 @@ class NewRound extends Component {
 
 const putReduxStateOnProps = (reduxStore) => ({
    courses: reduxStore.courses,
+   tees: reduxStore.tees,
 })
 
 export default connect(putReduxStateOnProps)(NewRound);
