@@ -5,6 +5,7 @@ import user from './userReducer';
 import details from './detailsReducer';
 import courses from './coursesReducer';
 import tees from './teesReducer';
+import holes from './holesReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   details,
   courses,
   tees,
+  holes,
 });
 
 export default rootReducer;
