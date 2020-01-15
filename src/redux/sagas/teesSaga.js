@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* getTeesSaga() {
+function* getTeesSaga(action) {
     try{
         const getResponse = yield axios.get(`/api/tees?course=${action.payload}`);
         yield put({type: 'SET_TEES', payload: getResponse.data})

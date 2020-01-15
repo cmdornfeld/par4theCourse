@@ -2,6 +2,9 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
     background-color: lightgreen;
+    background-image: url('../../images/golf.jpeg');
+    background-size: cover;
+    
 }
 
 .alert {
