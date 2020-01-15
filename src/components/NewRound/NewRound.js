@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 class NewRound extends Component {
 
   state = {
-    course: null,
+    course: "",
   }
 
   selectCourse = (event) => {
     this.setState({
       course: event.target.value
     });
-    this.props.dispatch({type: 'GET_COURSE_TEES', payload: this.state.course});
+    this.props.dispatch({type: 'GET_COURSE_TEES', payload: event.target.value});
   }
 
   componentDidMount() {
@@ -25,7 +25,7 @@ class NewRound extends Component {
         <p>Courses:</p> {JSON.stringify(this.props.courses)}
         <br/>
         <select onChange={(event) => {this.selectCourse(event)}}>
-          <option value=""></option>
+          <option value="default"></option>
           {this.props.courses.map(course => (
             <option key={course.id} value={course.name}>
               {course.name}
