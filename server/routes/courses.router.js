@@ -12,4 +12,14 @@ router.get('/', (req, res) => {
         });
 });
 
+router.get('/holes', (req, res) => {
+    pool.query(`SELECT "number", "par" FROM "hole_course"
+                JOIN "course" ON "course"."id" = "hole_course"."course_id";`)
+        .then(results => res.send(results.rows))
+        .catch(error => {
+            console.log('Error GETTING details:', error);
+            res.sendStatus(500);
+        });
+});
+
 module.exports = router;
