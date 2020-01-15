@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 class NewRound extends Component {
 
   state = {
-    course: ''
+    course: null,
   }
 
   selectCourse = (event) => {
     this.setState({
       course: event.target.value
     });
-    this.props.dispatch({type: 'GET_COURSE_TEES', payload: this.state});
+    this.props.dispatch({type: 'GET_COURSE_TEES', payload: this.state.course});
   }
 
   componentDidMount() {
