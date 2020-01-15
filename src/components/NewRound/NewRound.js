@@ -2,17 +2,30 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 class NewRound extends Component {
+
+  state = {
+    course: ''
+  }
+
+  selectCourse = (event) => {
+    this.setState({
+      course: event.target.value
+    });
+    this.props.dispatch({type: 'GET_COURSE_TEES', payload: this.state});
+  }
+
   componentDidMount() {
     this.props.dispatch({type: 'GET_COURSES'});
-    this.props.dispatch({type: 'GET_COURSE_TEES'})
   }
 
   render() {
     return (
       <div>
+        {JSON.stringify(this.state)}
         <p>Courses:</p> {JSON.stringify(this.props.courses)}
         <br/>
-        <select>
+        <select onChange={(event) => {this.selectCourse(event)}}>
+          <option value=""></option>
           {this.props.courses.map(course => (
             <option key={course.id} value={course.name}>
               {course.name}
