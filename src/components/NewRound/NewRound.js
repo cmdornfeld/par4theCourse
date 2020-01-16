@@ -5,6 +5,7 @@ class NewRound extends Component {
 
   state = {
     course: "",
+    tee: "",
   }
 
   selectCourse = (event) => {
@@ -12,6 +13,19 @@ class NewRound extends Component {
       course: event.target.value
     });
     this.props.dispatch({type: 'GET_COURSE_TEES', payload: event.target.value});
+  }
+
+  selectTee = (event) => {
+    this.setState({
+      tee: event.target.value
+    })
+  }
+
+  startRound = () => {
+    let round = {course: this.state.course, tee: this.state.tee};
+    console.log('round info =', round);
+    this.props.dispatch({type: 'SET_ROUND', payload: round});
+    this.props.history.push('/new-round/hole-1');
   }
 
   componentDidMount() {
@@ -37,13 +51,15 @@ class NewRound extends Component {
           <label>18 holes</label><input type="radio" name="holes" value="18 Holes"/>
         <br/>
         {JSON.stringify(this.props.tees)}
-        <select>
+        <select onChange={(event) => {this.selectTee(event)}}>
+          <option value="default"></option>
           {this.props.tees.map(tee => (
             <option key={tee.id} value={tee.name}>
               {tee.name} (distance: {tee.distance})
             </option>
           ))}
         </select>
+        <button onClick={this.startRound}>Start New Round</button>
       </div>
     );
   }
