@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-function* getHolesSaga() {
+function* getHolesSaga(action) {
     try{
-        const getResponse = yield axios.get('/api/courses/holes');
+        const getResponse = yield axios.get(`/api/courses/holes?courseId=${action.payload}`);
         yield put({type: 'SET_HOLES', payload: getResponse.data})
     }
     catch (error){

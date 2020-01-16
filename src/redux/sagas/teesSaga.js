@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* getTeesSaga(action) {
     try{
-        const getResponse = yield axios.get(`/api/tees?course=${action.payload}`);
+        const getResponse = yield axios.get(`/api/tees?courseId=${action.payload}`);
         yield put({type: 'SET_TEES', payload: getResponse.data})
     }
     catch (error){
