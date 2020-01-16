@@ -13,6 +13,7 @@ class NewRound extends Component {
       course: event.target.value
     });
     this.props.dispatch({type: 'GET_COURSE_TEES', payload: event.target.value});
+    this.props.dispatch({type: 'GET_COURSE_HOLES', payload: event.target.value});
   }
 
   selectTee = (event) => {
@@ -41,7 +42,7 @@ class NewRound extends Component {
         <select onChange={(event) => {this.selectCourse(event)}}>
           <option value="default"></option>
           {this.props.courses.map(course => (
-            <option key={course.id} value={course.name}>
+            <option key={course.id} value={course.id}>
               {course.name}
             </option>
           ))}
@@ -54,7 +55,7 @@ class NewRound extends Component {
         <select onChange={(event) => {this.selectTee(event)}}>
           <option value="default"></option>
           {this.props.tees.map(tee => (
-            <option key={tee.id} value={tee.name}>
+            <option key={tee.id} value={tee.id}>
               {tee.name} (distance: {tee.distance})
             </option>
           ))}
