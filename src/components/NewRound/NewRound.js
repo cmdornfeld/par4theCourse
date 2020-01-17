@@ -1,5 +1,15 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+
+const styles = {
+  pos: {
+    marginBottom: 12,
+  },
+};
 
 class NewRound extends Component {
 
@@ -33,7 +43,7 @@ class NewRound extends Component {
     let newRound = {course: this.state.course, holes: this.state.holes, tee: this.state.tee, user: this.props.user.id};
     console.log('round info =', newRound);
     this.props.dispatch({type: 'SET_ROUND_DETAILS', payload: newRound});
-    this.props.history.push('/new-round/hole-1');
+    this.props.history.push('/new-round/hole');
   }
 
   componentDidMount() {
@@ -68,7 +78,9 @@ class NewRound extends Component {
             </option>
           ))}
         </select>
-        <button onClick={this.startNewRound}>Start New Round</button>
+        <Button onClick={this.startNewRound} variant="contained">
+          Start Round
+        </Button>
       </div>
     );
   }
@@ -80,4 +92,4 @@ const putReduxStateOnProps = (reduxStore) => ({
    user: reduxStore.user
 })
 
-export default connect(putReduxStateOnProps)(NewRound);
+export default connect(putReduxStateOnProps)(withStyles(styles)(NewRound));
