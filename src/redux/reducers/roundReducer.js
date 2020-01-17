@@ -1,4 +1,4 @@
-const getRoundId = (state={}, action)=>{
+const getRoundId = (state=[], action)=>{
     if(action.type === `SET_ROUND_ID`){
         return action.payload;
     }
