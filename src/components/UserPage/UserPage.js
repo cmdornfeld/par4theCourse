@@ -26,7 +26,7 @@ class InfoPage extends Component {
   render() {
     return (
       <div>
-        <p>Hello, <b>{this.props.user.username}</b></p><br/>
+        <h1>Hello, <b>{this.props.user.username}</b></h1><br/>
           <Button onClick={this.goToSetRoundDetails} className={this.props.classes.button} variant="contained">
             Start New Round
           </Button><br/>
