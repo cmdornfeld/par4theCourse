@@ -2,7 +2,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
     background-color: lightgreen;
-    /* background-image: url('../../images/background-image.jpg'); */
+    background-image: url('../../images/background-image.jpg');
     background-size: cover;
     
 }
@@ -50,4 +50,25 @@ input {
     outline:0;
     border-bottom:1px solid #444; 
     cursor: pointer;
+}
+
+.card {
+    width: 20%;
+    margin-bottom: 12px;
+}
+
+p {
+    color: white;
+}
+
+h1 {
+    color: white;
+}
+
+label {
+    color: white;
+}
+
+span {
+    color: white;
 }
