@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
     console.log(req.query);
     
-    let queryText = `SELECT "teeColor"."name", "distance"
+    let queryText = `SELECT "teeColor"."name", "distance", "tees"."id"
                     FROM "tees"
                     JOIN "teeColor" ON "teeColor"."id" = "tees"."color"
                     JOIN "course" ON "course"."id" = "tees"."course_id"
