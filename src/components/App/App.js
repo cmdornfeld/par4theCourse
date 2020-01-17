@@ -53,7 +53,7 @@ class App extends Component {
 
             <ProtectedRoute
               exact
-              path ="/new-round/hole-1"
+              path ="/new-round/hole"
               component={Holes}
             />
             {/* If none of the other routes matched, we will show a 404. */}
