@@ -9,10 +9,10 @@ import {connect} from 'react-redux';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
-
+import './App.css';
 import Courses from '../Courses/Courses';
 import UserPage from '../UserPage/UserPage';
-import './App.css';
+import Details from '../Details/Details';
 import NewRound from '../NewRound/NewRound';
 import Holes from '../Holes/Holes';
 
@@ -44,6 +44,12 @@ class App extends Component {
               exact
               path="/home"
               component={UserPage}
+            />
+
+            <ProtectedRoute
+              exact
+              path ="/details"
+              component={Details}
             />
             <ProtectedRoute
               exact
