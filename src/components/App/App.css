@@ -2,7 +2,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
     background-color: lightgreen;
-    background-image: url('../../images/background-image.jpg');
+    /* background-image: url('../../images/background-image.jpg'); */
     background-size: cover;
     
 }
@@ -53,22 +53,21 @@ input {
 }
 
 .card {
-    width: 20%;
-    margin-bottom: 12px;
+    width: 25%;
+    height: 30%;
+    background-color: lightgreen;
 }
 
-p {
-    color: white;
+@media screen and (max-width: 480px) {
+    div {
+        background-color: blue;
+    }
+
+    /* .break-word {
+        word-wrap: break-word;   
+    } */
+    html{ 
+        overflow-y:scroll;
+    }
 }
 
-h1 {
-    color: white;
-}
-
-label {
-    color: white;
-}
-
-span {
-    color: white;
-}
