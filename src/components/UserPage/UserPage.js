@@ -23,6 +23,10 @@ class InfoPage extends Component {
     this.props.history.push('/new-round')
   }
 
+  goToRoundDetails = () => {
+    this.props.history.push('/details')
+  }
+
   render() {
     return (
       <div>
@@ -32,7 +36,7 @@ class InfoPage extends Component {
           </Button><br/>
           {JSON.stringify(this.props.user)}<br/>
           {JSON.stringify(this.props.details)}
-          <div className="card">
+          <div className="card" onClick={this.goToRoundDetails}>
           {this.props.details.map(round => (
             <Card key={round.round_id} className={this.props.classes.card}>
               <CardContent>
