@@ -8,7 +8,8 @@
 
 .nav {
   overflow: hidden;
-  background-color: #ffffff;
+  background-image: url('../../images/scorecard.jpg');
+  background-size: cover;
 }
 
 .nav-link {
