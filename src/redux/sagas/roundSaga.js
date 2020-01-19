@@ -14,7 +14,7 @@ function* setRoundSaga(action) {
 }
 
 function* setRound() {
-    yield takeLatest('SET_ROUND_DETAILS', setRoundSaga)
+    yield takeLatest('SET_ROUND_INFO', setRoundSaga)
 }
 
 export default setRound;
