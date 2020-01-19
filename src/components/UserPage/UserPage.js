@@ -23,7 +23,8 @@ class InfoPage extends Component {
     this.props.history.push('/new-round')
   }
 
-  goToRoundDetails = () => {
+  goToRoundDetails = (event, id) => {
+    this.props.dispatch({type: 'GET_ROUND_DETAILS', payload: id})
     this.props.history.push('/details')
   }
 
@@ -36,9 +37,9 @@ class InfoPage extends Component {
           </Button><br/>
           {JSON.stringify(this.props.user)}<br/>
           {JSON.stringify(this.props.details)}
-          <div className="card" onClick={this.goToRoundDetails}>
+          <div className="card">
           {this.props.details.map(round => (
-            <Card key={round.round_id} className={this.props.classes.card}>
+            <Card key={round.round_id} className={this.props.classes.card} onClick={(event) => this.goToRoundDetails(event, round.round_id)}>
               <CardContent>
                 {round.score}<br/>{round.name}<br/> Round ID: {round.round_id}
               </CardContent>
