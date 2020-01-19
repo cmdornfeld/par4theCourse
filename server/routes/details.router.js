@@ -25,10 +25,16 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     let queryText = `SELECT "hole_course"."number", "hole_course"."par", "score", "comments"
-    FROM "hole_user"
-    JOIN "round" ON "round"."id" = "hole_user"."round_id"
-    JOIN "hole_course" ON "hole_course"."id" = "hole_user"."hole_id"
-    WHERE "round"."id" = 1;`
+                    FROM "hole_user"
+                    JOIN "round" ON "round"."id" = "hole_user"."round_id"
+                    JOIN "hole_course" ON "hole_course"."id" = "hole_user"."hole_id"
+                    WHERE "round"."id" = $1;`
+    pool.query(queryText, [req.params.id])
+        .then(result => res.send(result.rows))
+        .catch(error => {
+            console.log('Error GETTING round details:', error);
+            res.sendStatus(500);
+        })
 })
 
 /**
