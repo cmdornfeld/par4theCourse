@@ -1,8 +1,14 @@
 const getDetails = (state=[], action)=>{
-    if(action.type === `SET_DETAILS`){
-        return action.payload;
+    switch(action.type) {
+        case 'SET_DETAILS' :
+            return action.payload
+        
+        case 'SET_ROUND_DETAILS' :
+            return action.payload
+
+        default:
+            return state
     }
-    return state;
 }
 
 export default getDetails;
