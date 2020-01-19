@@ -8,25 +8,33 @@ class Holes extends Component {
     comments: "",
   }
 
+  handleChange = (event, propertyName) => {
+    this.setState({
+      [propertyName]: event.target.value
+    })
+  }
+
   submitHoleInfo = ()=> {
     console.log('NEXT ROUND')
-    this.props.dispatch({type: 'SET_STEP', payload: this.props.holes.step+1})
+    this.props.dispatch({type: 'SET_HOLE_INDEX', payload: this.props.holes.holeIndex+1});
     this.setState({
       score: "",
       comments: ""
-    })
+    });
   }
 
   render() {
     return (
         <div>
-            <h1>Hole {this.props.holes.holeData[this.props.holes.step].number}</h1>
+            <h1>Hole {this.props.holes.holeData[this.props.holes.holeIndex].number}</h1>
             {JSON.stringify(this.props.holes)}
+            {JSON.stringify(this.state)}
             <label>My score</label>
-            <input type="number" min="1" max="10" placeholder="enter your score" /><br/>
-            <label>Par:</label><span>{this.props.holes.holeData[this.props.holes.step].par}</span><br/>
+            <input type="number" min="1" max="10" placeholder="enter your score" value={this.state.score}
+              onChange={(event) => this.handleChange(event, 'score')}/><br/>
+            <label>Par:</label><span>{this.props.holes.holeData[this.props.holes.holeIndex].par}</span><br/>
             <label>Comments:</label>
-            <textarea></textarea><br/>
+            <textarea value={this.state.comments} onChange={(event) => this.handleChange(event, 'comments')}>Enter hole comments</textarea><br/>
             <button>Cancel Round</button>
             <button onClick={this.submitHoleInfo}>Submit Score</button>
         </div>
