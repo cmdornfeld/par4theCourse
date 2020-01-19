@@ -1,13 +1,12 @@
-const getHoles = (state={
-    step: 0,
-    holeData: []
-}, action)=>{
+const getHoles = (state={holeIndex: 0, holeData: []}, action) => {
     switch(action.type) {
-        case 'SET_HOLES': return {
-                step: 0,
+        case 'SET_HOLES': 
+            return {
+                holeIndex: 0,
                 holeData: action.payload
             }
-        case 'SET_STEP': return {...state, step: action.payload}
+        case 'SET_HOLE_INDEX': 
+            return {...state, holeIndex: action.payload}
         default: return state
     }
 }
