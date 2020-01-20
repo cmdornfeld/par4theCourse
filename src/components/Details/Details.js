@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 class Details extends Component {
 
-  deleteRound = (event, id) => {
+  deleteRound = (id) => {
+    console.log('Deleting id:', id);
     this.props.dispatch({type: 'DELETE_ROUND', payload: id})
   }
   
@@ -29,7 +30,7 @@ class Details extends Component {
         <tbody>
           {this.props.details.map(hole => {
             return (
-            <tr key={hole.id}>
+            <tr key={hole.number}>
               <td>{hole.number}</td><td>{hole.par}</td><td>{hole.score}</td><td>{hole.comments}</td>
               <td><button>Edit</button></td>
             </tr>
@@ -37,7 +38,8 @@ class Details extends Component {
           })}
         </tbody>
       </table>
-      <button onClick={(event) => this.deleteRound(event, id)}>Delete Round</button>
+      <br/>
+      <button onClick={(event) => this.deleteRound(this.props.details[0].id)}>Delete Round</button>
       </>
     );
   }
