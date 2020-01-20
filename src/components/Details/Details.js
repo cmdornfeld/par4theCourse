@@ -8,6 +8,11 @@ class Details extends Component {
     console.log('Deleting id:', id);
     this.props.dispatch({type: 'DELETE_ROUND', payload: id})
   }
+
+  editHoleDetails = (id) => {
+    console.log('Updating for hole:', id);
+    
+  }
   
 
   render() {
@@ -17,6 +22,9 @@ class Details extends Component {
         <h1><b>Round Details</b></h1><br/>
           {JSON.stringify(this.props.user)}<br/>
           {JSON.stringify(this.props.details)}
+          <h3>Course played:</h3>
+          <h3>Total Score:</h3>
+          <h3>Total Par:</h3>
       </div>
       <div>
 
@@ -30,9 +38,9 @@ class Details extends Component {
         <tbody>
           {this.props.details.map(hole => {
             return (
-            <tr key={hole.number}>
+            <tr key={hole.hole_id}>
               <td>{hole.number}</td><td>{hole.par}</td><td>{hole.score}</td><td>{hole.comments}</td>
-              <td><button>Edit</button></td>
+              <td><button onClick={(event) => this.editHoleDetails(hole.hole_id)}>Edit</button></td>
             </tr>
             )
           })}
@@ -40,6 +48,7 @@ class Details extends Component {
       </table>
       <br/>
       <button onClick={(event) => this.deleteRound(this.props.details[0].id)}>Delete Round</button>
+      <button onClick={() => this.props.history.push('/home')}>Return Home</button>
       </>
     );
   }
