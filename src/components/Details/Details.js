@@ -1,18 +1,37 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 class Details extends Component {
+  
+  state = {
+    open: false,
+  };
 
   deleteRound = (id) => {
     console.log('Deleting id:', id);
-    this.props.dispatch({type: 'DELETE_ROUND', payload: id})
+    this.props.dispatch({type: 'DELETE_ROUND', payload: id});
+    this.props.history.push('/home');
   }
 
   editHoleDetails = (id) => {
     console.log('Updating for hole:', id);
     
   }
+
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
   
 
   render() {
@@ -47,8 +66,24 @@ class Details extends Component {
         </tbody>
       </table>
       <br/>
-      <button onClick={(event) => this.deleteRound(this.props.details[0].id)}>Delete Round</button>
-      <button onClick={() => this.props.history.push('/home')}>Return Home</button>
+      <Button onClick={this.handleClickOpen} variant="contained">Delete Round</Button>
+      <Dialog open={this.state.open} onClose={this.handleClose}>
+        <DialogTitle>{"Are you sure?"}</DialogTitle>
+        <DialogContent>
+            <DialogContentText>
+              Deleting this round will permanently remove it from your history.  I am sure I would like to delete this round.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="secondary">
+              No
+            </Button>
+            <Button onClick={(event) => this.deleteRound(this.props.details[0].id)} color="primary" autoFocus>
+              Yes
+            </Button>
+          </DialogActions>
+      </Dialog>
+      <Button onClick={() => this.props.history.push('/home')} variant="contained">Return Home</Button>
       </>
     );
   }
