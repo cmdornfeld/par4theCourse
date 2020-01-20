@@ -15,7 +15,7 @@ function* setRoundSaga(action) {
 
 function* deleteRoundSaga(action) {
     try{
-        yield axios.delete('/api/round', action.payload);
+        yield axios.delete(`/api/round/${action.payload}`);
     }
     catch (error){
         console.log(error); 
@@ -23,7 +23,8 @@ function* deleteRoundSaga(action) {
 }
 
 function* setRound() {
-    yield takeLatest('SET_ROUND_INFO', setRoundSaga)
+    yield takeLatest('SET_ROUND_INFO', setRoundSaga);
+    yield takeLatest('DELETE_ROUND', deleteRoundSaga);
 }
 
 export default setRound;
