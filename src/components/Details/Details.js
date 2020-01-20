@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 
 
 class Details extends Component {
+
+  deleteRound = (event, id) => {
+    this.props.dispatch({type: 'DELETE_ROUND', payload: id})
+  }
   
 
   render() {
@@ -27,12 +31,13 @@ class Details extends Component {
             return (
             <tr key={hole.id}>
               <td>{hole.number}</td><td>{hole.par}</td><td>{hole.score}</td><td>{hole.comments}</td>
-              <td><button>Edit</button></td><td><button>Delete</button></td>
+              <td><button>Edit</button></td>
             </tr>
             )
           })}
         </tbody>
       </table>
+      <button onClick={(event) => this.deleteRound(event, id)}>Delete Round</button>
       </>
     );
   }
