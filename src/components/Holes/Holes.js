@@ -14,7 +14,7 @@ class Holes extends Component {
     })
   }
 
-  submitHoleInfo = ()=> {
+  submitHoleInfo = () => {
     console.log('NEXT ROUND')
     let holeInfo = {hole: this.props.holes.holeData[this.props.holes.holeIndex].id, score: this.state.score, 
       comments: this.state.comments, roundId: this.props.round.id}
