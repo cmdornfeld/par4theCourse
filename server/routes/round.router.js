@@ -1,8 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {rejectUnauthenticated} = require('../modules/authentication-middleware')
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('logging req.body', req.body);
     
     const queryText = 'INSERT INTO "round" ("holes", "user_id", "course_id", "tee_id") VALUES ($1, $2, $3, $4) RETURNING id;';
@@ -17,6 +18,10 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
   res.send({id: req.session.round});
 });
+
+router.delete('/:id', (req, res) => {
+
+})
 
 
 module.exports = router;

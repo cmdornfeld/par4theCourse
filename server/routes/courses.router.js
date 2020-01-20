@@ -1,9 +1,10 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {rejectUnauthenticated} = require('../modules/authentication-middleware')
 
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     pool.query(`SELECT "name", "holes", "location", "id" FROM "course";`)
         .then(results => res.send(results.rows))
         .catch(error => {
@@ -12,7 +13,7 @@ router.get('/', (req, res) => {
         });
 });
 
-router.get('/holes', (req, res) => {
+router.get('/holes', rejectUnauthenticated, (req, res) => {
     pool.query(`SELECT "number", "par", "hole_course"."id" FROM "hole_course"
                 JOIN "course" ON "course"."id" = "hole_course"."course_id"
                 WHERE "course"."id" = $1;`, [req.query.courseId])
