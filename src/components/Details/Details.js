@@ -9,9 +9,12 @@ class Details extends Component {
     return (
       <>
       <div>
-        <h1>Hello, <b>{this.props.user.username}</b></h1><br/>
+        <h1><b>Round Details</b></h1><br/>
           {JSON.stringify(this.props.user)}<br/>
           {JSON.stringify(this.props.details)}
+      </div>
+      <div>
+
       </div>
       <table>
         <thead>
@@ -20,11 +23,14 @@ class Details extends Component {
           </tr>
         </thead>
         <tbody>
-          {/* {this.props.details.map(hole => {
-            <tr>
+          {this.props.details.map(hole => {
+            return (
+            <tr key={hole.id}>
               <td>{hole.number}</td><td>{hole.par}</td><td>{hole.score}</td><td>{hole.comments}</td>
+              <td><button>Edit</button></td><td><button>Delete</button></td>
             </tr>
-          })} */}
+            )
+          })}
         </tbody>
       </table>
       </>

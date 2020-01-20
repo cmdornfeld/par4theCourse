@@ -37,7 +37,7 @@ class InfoPage extends Component {
           </Button><br/>
           {JSON.stringify(this.props.user)}<br/>
           {JSON.stringify(this.props.details)}
-          <div className="card">
+          <div className="round-card">
           {this.props.details.map(round => (
             <Card key={round.round_id} className={this.props.classes.card} onClick={(event) => this.goToRoundDetails(event, round.round_id)}>
               <CardContent>

@@ -11,8 +11,18 @@ function* getHolesSaga(action) {
     }
 }
 
+function* postHolesSaga(action) {
+    try{
+        yield axios.post('/api/details', action.payload);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
 function* getHoles() {
-    yield takeLatest('GET_COURSE_HOLES', getHolesSaga)
+    yield takeLatest('GET_COURSE_HOLES', getHolesSaga);
+    yield takeLatest('POST_HOLE_INFO', postHolesSaga);
 }
 
 export default getHoles;
