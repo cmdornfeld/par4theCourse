@@ -12,3 +12,17 @@ const getDetails = (state=[], action)=>{
 }
 
 export default getDetails;
+
+// switch(action.type) {
+//     case 'SET_DETAILS' :
+//         return {
+//             userData: action.payload,
+//             roundData: []
+//         }
+    
+//     case 'SET_ROUND_DETAILS' :
+//         return {...state, roundData: action.payload}
+
+//     default:
+//         return state
+// }

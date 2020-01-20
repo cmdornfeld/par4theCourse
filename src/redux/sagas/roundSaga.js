@@ -13,6 +13,15 @@ function* setRoundSaga(action) {
     }
 }
 
+function* deleteRoundSaga(action) {
+    try{
+        yield axios.delete('/api/round', action.payload);
+    }
+    catch (error){
+        console.log(error); 
+    }
+}
+
 function* setRound() {
     yield takeLatest('SET_ROUND_INFO', setRoundSaga)
 }
