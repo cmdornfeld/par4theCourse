@@ -16,6 +16,10 @@ class Holes extends Component {
 
   submitHoleInfo = ()=> {
     console.log('NEXT ROUND')
+    let holeInfo = {hole: this.props.holes.holeData[this.props.holes.holeIndex].id, score: this.state.score, 
+      comments: this.state.comments, roundId: this.props.round.id}
+    console.log('logging holeInfo:', holeInfo);
+    this.props.dispatch({type: 'POST_HOLE_INFO', payload: holeInfo})
     this.props.dispatch({type: 'SET_HOLE_INDEX', payload: this.props.holes.holeIndex+1});
     this.setState({
       score: "",
@@ -44,6 +48,7 @@ class Holes extends Component {
 
 const putReduxStateOnProps = (reduxStore) => ({
    holes: reduxStore.holes,
+   round: reduxStore.round,
 })
 
 export default connect(putReduxStateOnProps)(Holes);
