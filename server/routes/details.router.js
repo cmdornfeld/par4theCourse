@@ -37,18 +37,14 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
         })
 })
 
-/**
- * GET route template
- */
-// router.get('/', (req, res) => {
-    
-// });
-
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-
+router.post('/', rejectUnauthenticated, (req, res) => {
+    console.log('logging req.body', req.body);
+    const queryText = 'INSERT INTO "hole_user" ("hole_id", "score", "comments", "round_id") VALUES ($1, $2, $3, $4);';
+    pool.query(queryText, [req.body.hole, req.body.score, req.body.comments, req.body.roundId])
+      .then(result => {
+      res.sendStatus(201)})
+      .catch((error) => {console.log('logging', error);
+      res.sendStatus(500)});
 });
 
 module.exports = router;
