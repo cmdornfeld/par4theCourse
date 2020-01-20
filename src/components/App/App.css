@@ -52,10 +52,14 @@ input {
     cursor: pointer;
 }
 
-.card {
+.round-card {
     width: 25%;
     height: 30%;
-    background-color: lightgreen;
+}
+
+.course-card {
+    width: 25%;
+    height: 30%;
 }
 
 @media screen and (max-width: 480px) {
