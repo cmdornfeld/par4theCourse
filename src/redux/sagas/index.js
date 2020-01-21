@@ -23,7 +23,7 @@ export default function* rootSaga() {
     userSaga(),
     coursesSaga(),
     teesSaga(),
-    holesSaga(),
+    // holesSaga(),
     roundSaga(),
   ]);
 }

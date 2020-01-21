@@ -43,7 +43,7 @@ class NewRound extends Component {
     let newRound = {course: this.state.course, holes: this.state.holes, tee: this.state.tee, user: this.props.user.id};
     console.log('round info =', newRound);
     this.props.dispatch({type: 'SET_ROUND_INFO', payload: newRound});
-    this.props.history.push('/new-round/hole');
+    this.props.history.push('/new-round/scorecard');
   }
 
   componentDidMount() {

@@ -14,7 +14,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
                     JOIN "hole_user" ON "hole_user"."round_id" = "round"."id"
                     JOIN "users" ON "users"."id" = "round"."user_id"
                     WHERE "users"."id" = $1
-                    GROUP BY "course"."name", "hole_user"."round_id", "users"."username";`
+                    GROUP BY "course"."id", "hole_user"."round_id", "users"."username", "round"."date"
+                    ORDER BY "round"."date" DESC;`
     pool.query(queryText, [req.user.id])
         .then(results => res.send(results.rows))
         .catch(error => {

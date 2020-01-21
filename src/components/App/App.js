@@ -14,7 +14,7 @@ import Courses from '../Courses/Courses';
 import UserPage from '../UserPage/UserPage';
 import Details from '../Details/Details';
 import NewRound from '../NewRound/NewRound';
-import Holes from '../Holes/Holes';
+import Scorecard from '../Scorecard/Scorecard';
 
 class App extends Component {
   componentDidMount () {
@@ -59,8 +59,8 @@ class App extends Component {
 
             <ProtectedRoute
               exact
-              path ="/new-round/hole"
-              component={Holes}
+              path ="/new-round/scorecard"
+              component={Scorecard}
             />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
