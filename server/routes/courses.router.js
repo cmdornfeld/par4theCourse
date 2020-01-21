@@ -13,15 +13,4 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         });
 });
 
-router.get('/holes', rejectUnauthenticated, (req, res) => {
-    pool.query(`SELECT "number", "par", "hole_course"."id" FROM "hole_course"
-                JOIN "course" ON "course"."id" = "hole_course"."course_id"
-                WHERE "course"."id" = $1;`, [req.query.courseId])
-        .then(results => res.send(results.rows))
-        .catch(error => {
-            console.log('Error GETTING holes details:', error);
-            res.sendStatus(500);
-        });
-});
-
 module.exports = router;
