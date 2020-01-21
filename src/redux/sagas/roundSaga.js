@@ -3,13 +3,15 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* setRoundSaga(action) {
     try{
-        yield axios.post('/api/round', action.payload);
-        const roundId = yield axios.get('/api/round');
-        console.log('logging roundId:', roundId.data);
-        yield put({type: 'SET_ROUND_ID', payload: roundId.data});
+        const createNewRound = yield axios.post('/api/round', action.payload);
+        console.log('logging createNewRound:', createNewRound.data.id);
+        
+        const newRound = yield axios.get(`/api/round/${createNewRound.data.id}`);
+        console.log('logging newRound:', newRound.data);
+        yield put({type: 'SET_ROUND', payload: newRound.data});
     }
     catch (error){
-        console.log(error); 
+        console.log(error);
     }
 }
 
