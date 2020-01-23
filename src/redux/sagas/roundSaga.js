@@ -17,7 +17,8 @@ function* setRoundSaga(action) {
 
 function* updateRoundSaga(action) {
     try {
-        yield axios.put('/api/round?roundId=')
+        console.log('logging action.payload:', action.payload);
+        yield axios.put(`/api/round/update/${action.payload.id}`, action.payload.holeData);
 
     }
     catch (error){
