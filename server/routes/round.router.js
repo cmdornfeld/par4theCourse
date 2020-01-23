@@ -39,10 +39,11 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
 router.get('/:id', (req, res) => {
   console.log('logging req.session.round:', req.params.id);
   
-  let queryText = `SELECT "hole_course"."number", "hole_course"."par", "score", "comments", "hole_user"."id"
+  let queryText = `SELECT "hole_course"."number", "hole_course"."par", "score", "comments", "hole_user"."id", "hole_user"."round_id", "course"."name"
                   FROM "hole_user"
                   JOIN "round" ON "round"."id" = "hole_user"."round_id"
                   JOIN "hole_course" ON "hole_course"."id" = "hole_user"."hole_id"
+                  JOIN "course" ON "course"."id" = "hole_course"."course_id"
                   WHERE "round"."id" = $1;`
   pool.query(queryText, [req.params.id])
     .then(result => {
@@ -64,7 +65,7 @@ router.delete('/:id', (req, res) => {
     res.sendStatus(201)})
     .catch((error) => {console.log('logging', error);
     res.sendStatus(500)});
-})
+});
 
 
 module.exports = router;
