@@ -67,5 +67,17 @@ router.delete('/:id', (req, res) => {
     res.sendStatus(500)});
 });
 
+router.put('/update/:id', rejectUnauthenticated, (req, res) => {
+  let holeData = req.body
+  console.log('logging holeData:', holeData);
+  for(let [hole, value] of Object.entries(holeData)){
+    pool.query(`UPDATE "hole_user" SET "score" = $1, "comments" =$2 WHERE "id" = $3;`, 
+      [value.score, value.comments, value.id])
+    console.log(`${hole}, ${value.score}, ${value.comments}, ${value.id}`)
+  }
+})
+
+
+
 
 module.exports = router;
