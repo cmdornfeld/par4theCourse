@@ -19,41 +19,41 @@ class Scorecard extends Component {
       if(this.props.round !== prevProps.round){
       if(this.props.round.length === 9){
           this.setState({
-              holeData: [
-                  {hole1score: '', hole1comments: '', id: ''},
-                  {hole2score: '', hole2comments: '', id: ''},
-                  {hole3score: '', hole3comments: '', id: ''},
-                  {hole4score: '', hole4comments: '', id: ''},
-                  {hole5score: '', hole5comments: '', id: ''},
-                  {hole6score: '', hole6comments: '', id: ''},
-                  {hole7score: '', hole7comments: '', id: ''},
-                  {hole8score: '', hole8comments: '', id: ''},
-                  {hole9score: '', hole9comments: '', id: ''},
-              ]
+              holeData: {
+                hole1: {score: '', comments: '', id: this.props.round[0].id},
+                hole2: {score: '', comments: '', id: this.props.round[1].id},
+                hole3: {score: '', comments: '', id: this.props.round[2].id},
+                hole4: {score: '', comments: '', id: this.props.round[3].id},
+                hole5: {score: '', comments: '', id: this.props.round[4].id},
+                hole6: {score: '', comments: '', id: this.props.round[5].id},
+                hole7: {score: '', comments: '', id: this.props.round[6].id},
+                hole8: {score: '', comments: '', id: this.props.round[7].id},
+                hole9: {score: '', comments: '', id: this.props.round[8].id},
+              }
           })
       }
       else {
         this.setState({
-            holeData: [
-                {hole1score: '', hole1comments: '', id: ''},
-                {hole2score: '', hole2comments: '', id: ''},
-                {hole3score: '', hole3comments: '', id: ''},
-                {hole4score: '', hole4comments: '', id: ''},
-                {hole5score: '', hole5comments: '', id: ''},
-                {hole6score: '', hole6comments: '', id: ''},
-                {hole7score: '', hole7comments: '', id: ''},
-                {hole8score: '', hole8comments: '', id: ''},
-                {hole9score: '', hole9comments: '', id: ''},
-                {hole10score: '', hole10comments: '', id: ''},
-                {hole11score: '', hole11comments: '', id: ''},
-                {hole12score: '', hole12comments: '', id: ''},
-                {hole13score: '', hole13comments: '', id: ''},
-                {hole14score: '', hole14comments: '', id: ''},
-                {hole15score: '', hole15comments: '', id: ''},
-                {hole16score: '', hole16comments: '', id: ''},
-                {hole17score: '', hole17comments: '', id: ''},
-                {hole18score: '', hole18comments: '', id: ''},
-            ]
+            holeData: {
+                hole1: {score: '', comments: '', id: this.props.round[0].id},
+                hole2: {score: '', comments: '', id: this.props.round[1].id},
+                hole3: {score: '', comments: '', id: this.props.round[2].id},
+                hole4: {score: '', comments: '', id: this.props.round[3].id},
+                hole5: {score: '', comments: '', id: this.props.round[4].id},
+                hole6: {score: '', comments: '', id: this.props.round[5].id},
+                hole7: {score: '', comments: '', id: this.props.round[6].id},
+                hole8: {score: '', comments: '', id: this.props.round[7].id},
+                hole9: {score: '', comments: '', id: this.props.round[8].id},
+                hole10: {score: '', comments: '', id: this.props.round[9].id},
+                hole11: {score: '', comments: '', id: this.props.round[10].id},
+                hole12: {score: '', comments: '', id: this.props.round[11].id},
+                hole13: {score: '', comments: '', id: this.props.round[12].id},
+                hole14: {score: '', comments: '', id: this.props.round[13].id},
+                hole15: {score: '', comments: '', id: this.props.round[14].id},
+                hole16: {score: '', comments: '', id: this.props.round[15].id},
+                hole17: {score: '', comments: '', id: this.props.round[16].id},
+                hole18: {score: '', comments: '', id: this.props.round[17].id},
+            }
         })
       }
 
@@ -83,14 +83,19 @@ class Scorecard extends Component {
     this.setState({ deleteOpen: false, submitOpen: false });
   };
 
-  handleChange = (event, propertyName, id) => {
+  handleChange = (value, holeNumber, propertyName) => {
       console.log('logging change for propertyName:', propertyName);
-      this.setState({
+      this.setState(prevState => {
+        return {
           holeData: {
-          [propertyName]: event.target.value,
-          id: id
+            ...prevState.holeData,
+            [holeNumber]: {
+              ...prevState.holeData[holeNumber],
+              [propertyName]: value,
+            }
           }
-      })
+        };
+      });
   }
   
 
@@ -119,8 +124,8 @@ class Scorecard extends Component {
             <tr key={hole.id}>
               <td>{hole.number}</td>
               <td>{hole.par}</td>
-              <td><input onChange={(event) => this.handleChange(event, `hole${hole.number}score`, hole.id)} type="number" /></td>
-              <td><input onChange={(event) => this.handleChange(event, `hole${hole.number}comments`)}type="text" /></td>
+              <td><input onChange={(event) => this.handleChange(event.target.value, `hole${hole.number}`, 'score')} type="number" /></td>
+              <td><input onChange={(event) => this.handleChange(event.target.value, `hole${hole.number}`, 'comments')}type="text" /></td>
             </tr>
             )
           })}
