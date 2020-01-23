@@ -67,8 +67,10 @@ class Scorecard extends Component {
   }
 
   submitRound = (id) => {
+    let objectToSend = this.state.holeData;
+    console.log('logging objectToSend:', objectToSend);
     console.log('Submitting info for round:', id);
-    // this.props.dispatch({type: UPDATE_ROUND, payload: this.state.holeData});
+    this.props.dispatch({type: 'UPDATE_ROUND', payload: {holeData: objectToSend, id: id}});
   }
 
   handleCancelOpen = () => {
