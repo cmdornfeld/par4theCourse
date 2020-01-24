@@ -5,7 +5,7 @@ import user from './userReducer';
 import details from './detailsReducer';
 import courses from './coursesReducer';
 import tees from './teesReducer';
-// import holes from './holesReducer';
+import totals from './totalReducer';
 import round from './roundReducer';
 
 // rootReducer is the primary reducer for our entire project
@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
   details,
   courses,
   tees,
-  // holes,
+  totals,
   round,
 });
 
