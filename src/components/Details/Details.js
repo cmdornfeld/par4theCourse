@@ -44,10 +44,9 @@ class Details extends Component {
       <>
       <div>
         <h1><b>Round Details</b></h1><br/>
-          {JSON.stringify(this.props.user)}<br/>
+          {/* {JSON.stringify(this.props.user)}<br/>
           {JSON.stringify(this.props.details)}<br/>
-          {JSON.stringify(this.props.total)}
-          <h3>Course played:</h3>
+          {JSON.stringify(this.props.total)} */}
           <h3>Total Score: {this.props.total.score}</h3>
           <h3>Total Par: {this.props.total.par}</h3>
           <Button onClick={this.handleClickOpen} variant="contained">Delete Round</Button>

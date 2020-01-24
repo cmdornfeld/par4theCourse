@@ -52,13 +52,13 @@ class NewRound extends Component {
 
   render() {
     return (
-      <div>
-        {JSON.stringify(this.state)}
-        {JSON.stringify(this.props.user)}
-        <p>Courses:</p> {JSON.stringify(this.props.courses)}
+      <div className="round-details-box">
+        {/* {JSON.stringify(this.state)}
+        {JSON.stringify(this.props.user)} */}
+        <h2>Round Details</h2> {/*{JSON.stringify(this.props.courses)}*/}
         <br/>
         <select onChange={(event) => {this.selectCourse(event)}}>
-          <option value="default"></option>
+          <option value="default">Please choose your course</option>
           {this.props.courses.map(course => (
             <option key={course.id} value={course.id}>
               {course.name}
@@ -69,9 +69,9 @@ class NewRound extends Component {
           <label>9 holes</label><input onChange={(event) => {this.selectHoles(event)}} type="radio" name="holes" value="9"/>
           <label>18 holes</label><input onChange={(event) => {this.selectHoles(event)}} type="radio" name="holes" value="18"/>
         <br/>
-        {JSON.stringify(this.props.tees)}
+        {/* {JSON.stringify(this.props.tees)} */}
         <select onChange={(event) => {this.selectTee(event)}}>
-          <option value="default"></option>
+          <option value="default">Please choose your tee</option>
           {this.props.tees.map(tee => (
             <option key={tee.id} value={tee.id}>
               {tee.name} (distance: {tee.distance})
