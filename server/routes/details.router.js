@@ -29,9 +29,25 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
                     FROM "hole_user"
                     JOIN "round" ON "round"."id" = "hole_user"."round_id"
                     JOIN "hole_course" ON "hole_course"."id" = "hole_user"."hole_id"
-                    WHERE "round"."id" = $1;`
+                    WHERE "round"."id" = $1
+                    ORDER BY "hole_course"."number";`
     pool.query(queryText, [req.params.id])
         .then(result => res.send(result.rows))
+        .catch(error => {
+            console.log('Error GETTING round details:', error);
+            res.sendStatus(500);
+        })
+})
+
+router.get('/total/:id', rejectUnauthenticated, (req, res) => {
+    console.log('in total route', req.params);
+    
+    let queryText = `SELECT SUM("hole_course"."par") par, SUM("hole_user"."score") score
+                    FROM "hole_course"
+                    JOIN "hole_user" ON "hole_user"."hole_id" = "hole_course"."id"
+                    WHERE "hole_user"."round_id" = $1;`
+    pool.query(queryText, [req.params.id])
+        .then(result => res.send(result.rows[0]))
         .catch(error => {
             console.log('Error GETTING round details:', error);
             res.sendStatus(500);
