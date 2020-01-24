@@ -12,9 +12,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
-let roundPar = 0;
-let myRoundScore = 0;
-
 
 class Scorecard extends Component {
   
@@ -75,11 +72,12 @@ class Scorecard extends Component {
   }
 
   submitRound = (id) => {
+    this.handleClose();
     let objectToSend = this.state.holeData;
     console.log('logging objectToSend:', objectToSend);
     console.log('Submitting info for round:', id);
     this.props.dispatch({type: 'UPDATE_ROUND', payload: {holeData: objectToSend, id: id}});
-    this.handleClose();
+    this.props.history.push('/home');
   }
 
   handleCancelOpen = () => {
@@ -109,32 +107,22 @@ class Scorecard extends Component {
       });
   }
 
-  getRoundPar = () => {
-    for( let hole of this.props.round){
-      roundPar += hole.par
-    }
-    return roundPar;
-  }
-  
 
   render() {
     return (
       <>
       <div>
-          {JSON.stringify(this.state)}
-          {JSON.stringify(roundPar)}
+          {/* {JSON.stringify(this.state)} */}
         <h1><b>Round Details</b></h1><br/>
-          {JSON.stringify(this.props.round)}<br/>
-          {JSON.stringify(this.props.round.length)}
+          {/* {JSON.stringify(this.props.round)}<br/>
+          {JSON.stringify(this.props.round.length)} */}
           <h3>Course: {this.props.round.name}</h3>
       </div>
-      <div>
-
-      </div>
+      <div className="round-table">
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Hole #</TableCell>
+            <TableCell>Hole</TableCell>
             <TableCell>Par</TableCell>
             <TableCell>Score</TableCell>
             <TableCell>Comments</TableCell>
@@ -152,7 +140,8 @@ class Scorecard extends Component {
             )
           })}
         </TableBody>
-      </Table><br/>
+      </Table>
+      </div><br/>
       <Button onClick={this.handleCancelOpen} variant="contained">Cancel Round</Button>
       <Dialog open={this.state.deleteOpen} onClose={this.handleClose} aria-labelledby="cancel-dialog-title"
           aria-describedby="cancel-dialog-description">

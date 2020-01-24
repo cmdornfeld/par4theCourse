@@ -41,7 +41,7 @@ class RegisterPage extends Component {
           </h2>
         )}
         <form onSubmit={this.registerUser}>
-          <h1>Register User</h1>
+          <h1>Register</h1>
           <div>
             <label htmlFor="username">
               Username:

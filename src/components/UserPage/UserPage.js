@@ -22,12 +22,13 @@ class InfoPage extends Component {
   render() {
     return (
       <div>
-        <h1>Hello, <b>{this.props.user.username}</b></h1><br/>
+        <h1>Hi, {this.props.user.username}</h1><br/>
           <button onClick={this.goToSetRoundDetails} className="start-button">
             Play golf
           </button><br/>
           {/* {JSON.stringify(this.props.user)}<br/>
           {JSON.stringify(this.props.details)} */}
+          <h3>Round History</h3>
           <div className="round-card-box">
           {this.props.details.map(round => (
             <div className="round-card" key={round.round_id}  onClick={(event) => this.goToRoundDetails(event, round.round_id)}>

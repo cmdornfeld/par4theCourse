@@ -24,17 +24,18 @@ class Courses extends Component{
     return(
       <div>
         <div>
-          <p>
-            <b>This page has all of the courses listed in the application</b>
-          </p>
+          <h3>
+            Participating Courses
+          </h3>
         </div>
-        <div className="course-card">
+        <div className="course-card-box">
           {this.props.courses.map(course => {
               return (
-                <Card key={course.id}>
+                <div className="course-card" key={course.id}>
+                  <div className="card-background"></div>
                   <CardContent>{course.name}, {course.location}, {course.holes}
                   </CardContent>
-                </Card>
+                </div>
               )
           })}
         </div>
