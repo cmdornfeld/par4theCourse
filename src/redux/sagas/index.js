@@ -5,7 +5,7 @@ import userSaga from './userSaga';
 import detailsSaga from './detailsSaga';
 import coursesSaga from './coursesSaga';
 import teesSaga from './teesSaga';
-import holesSaga from './holesSaga';
+import totalSaga from './totalSaga';
 import roundSaga from './roundSaga';
 
 // rootSaga is the primary saga.
@@ -23,7 +23,7 @@ export default function* rootSaga() {
     userSaga(),
     coursesSaga(),
     teesSaga(),
-    // holesSaga(),
+    totalSaga(),
     roundSaga(),
   ]);
 }
