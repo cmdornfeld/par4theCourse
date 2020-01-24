@@ -6,6 +6,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 
 class Details extends Component {
@@ -40,50 +45,54 @@ class Details extends Component {
       <div>
         <h1><b>Round Details</b></h1><br/>
           {JSON.stringify(this.props.user)}<br/>
-          {JSON.stringify(this.props.details)}
+          {JSON.stringify(this.props.details)}<br/>
+          {JSON.stringify(this.props.total)}
           <h3>Course played:</h3>
-          <h3>Total Score:</h3>
-          <h3>Total Par:</h3>
+          <h3>Total Score: {this.props.total.score}</h3>
+          <h3>Total Par: {this.props.total.par}</h3>
+          <Button onClick={this.handleClickOpen} variant="contained">Delete Round</Button>
+          <Dialog open={this.state.open} onClose={this.handleClose}>
+            <DialogTitle>{"Are you sure?"}</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Deleting this round will permanently remove it from your history.  I am sure I would like to delete this round.
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleClose} color="secondary">
+                No
+              </Button>
+              <Button onClick={(event) => this.deleteRound(this.props.details[0].id)} color="primary" autoFocus>
+                Yes
+              </Button>
+            </DialogActions>
+          </Dialog>
+          <Button onClick={() => this.props.history.push('/home')} variant="contained">Return Home</Button>
       </div>
-      <div>
-
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Hole #</th><th>Par</th><th>Score</th><th>Comments</th><th>&nbsp;</th><th>&nbsp;</th>
-          </tr>
-        </thead>
-        <tbody>
+      <div className="round-table">
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Hole #</TableCell>
+            <TableCell>Par</TableCell>
+            <TableCell>Score</TableCell>
+            <TableCell>Comments</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {this.props.details.map(hole => {
             return (
-            <tr key={hole.hole_id}>
-              <td>{hole.number}</td><td>{hole.par}</td><td>{hole.score}</td><td>{hole.comments}</td>
-              <td><button onClick={(event) => this.editHoleDetails(hole.hole_id)}>Edit</button></td>
-            </tr>
+            <TableRow key={hole.hole_id}>
+              <TableCell>{hole.number}</TableCell>
+              <TableCell>{hole.par}</TableCell>
+              <TableCell>{hole.score}</TableCell>
+              <TableCell>{hole.comments}</TableCell>
+            </TableRow>
             )
           })}
-        </tbody>
-      </table>
-      <br/>
-      <Button onClick={this.handleClickOpen} variant="contained">Delete Round</Button>
-      <Dialog open={this.state.open} onClose={this.handleClose}>
-        <DialogTitle>{"Are you sure?"}</DialogTitle>
-        <DialogContent>
-            <DialogContentText>
-              Deleting this round will permanently remove it from your history.  I am sure I would like to delete this round.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="secondary">
-              No
-            </Button>
-            <Button onClick={(event) => this.deleteRound(this.props.details[0].id)} color="primary" autoFocus>
-              Yes
-            </Button>
-          </DialogActions>
-      </Dialog>
-      <Button onClick={() => this.props.history.push('/home')} variant="contained">Return Home</Button>
+        </TableBody>
+      </Table>
+      </div>
       </>
     );
   }
@@ -91,7 +100,8 @@ class Details extends Component {
 
 const putReduxStateOnProps = (reduxStore) => ({
   details: reduxStore.details,
-  user: reduxStore.user
+  user: reduxStore.user,
+  total: reduxStore.totals,
 })
 
 export default connect(putReduxStateOnProps)(Details);

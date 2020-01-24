@@ -1,9 +1,10 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
-    background-color: lightgreen;
-    /* background-image: url('../../images/background-image.jpg'); */
+    background-image: url('../../images/background-image.jpg');
     background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
     
 }
 
@@ -13,21 +14,20 @@ body {
 }
 
 form {
-    background-color: #dbd5d5;
-    width: 30%;
+    background-color: red;
+    width: 40%;
     height: 250px;
     margin: 20px auto;
-    padding: 25px;
-    border-radius: 2px;
+    padding: 20px;
+    border-radius: 12px;
 }
 
 input {
-    margin: 5px;
-    margin-bottom: 10px;
+    margin: 5px auto;
 }
 
 .log-in, .log-out, .register {
-  background-color: #00acb0;
+  background-color: #36ac59;
   border-radius: 4px;
   color: #f8f8f8;
   min-height: 50px;
@@ -52,26 +52,39 @@ input {
     cursor: pointer;
 }
 
+.round-card-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
 .round-card {
-    width: 25%;
-    height: 30%;
+    width: 45%;
+    border: 1px solid gray;
+    margin: 8px 0;
+    background-color: white;
 }
 
-.course-card {
-    width: 25%;
-    height: 30%;
+.start-button {
+    display: block;
+    margin: 8px auto;
+    background-color: rgb(32, 178, 105);
+    font-size: 24px;
+    border: none;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 8px;
 }
 
-@media screen and (max-width: 480px) {
-    div {
-        background-color: blue;
-    }
-
-    /* .break-word {
-        word-wrap: break-word;   
-    } */
-    html{ 
-        overflow-y:scroll;
-    }
+.round-table {
+    padding: 0 5%;
+    
 }
+.round-table Table {
+    background-color: rgb(215, 240, 205);
+}
+
+/* @media screen and (max-width: 480px) {
+    
+} */
 
