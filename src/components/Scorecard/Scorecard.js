@@ -77,7 +77,7 @@ class Scorecard extends Component {
     console.log('logging objectToSend:', objectToSend);
     console.log('Submitting info for round:', id);
     this.props.dispatch({type: 'UPDATE_ROUND', payload: {holeData: objectToSend, id: id}});
-    this.props.history.push('/home');
+    // this.props.history.push('/home');
   }
 
   handleCancelOpen = () => {
@@ -116,7 +116,7 @@ class Scorecard extends Component {
         <h1><b>Round Details</b></h1><br/>
           {/* {JSON.stringify(this.props.round)}<br/>
           {JSON.stringify(this.props.round.length)} */}
-          <h3>Course: {this.props.round.name}</h3>
+          {/* <h3>Course: {this.props.round.name}</h3> */}
       </div>
       <div className="round-table">
       <Table>
