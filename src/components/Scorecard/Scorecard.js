@@ -77,7 +77,7 @@ class Scorecard extends Component {
     console.log('logging objectToSend:', objectToSend);
     console.log('Submitting info for round:', id);
     this.props.dispatch({type: 'UPDATE_ROUND', payload: {holeData: objectToSend, id: id}});
-    // this.props.history.push('/home');
+    this.props.history.push('/home');
   }
 
   handleCancelOpen = () => {

@@ -57,7 +57,7 @@ router.get('/:id', (req, res) => {
     })
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
   console.log('logging req.params:', req.params);
   let queryText = `DELETE FROM "round" WHERE "round"."id" = $1;`
   pool.query(queryText, [req.params.id])

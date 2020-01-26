@@ -4,7 +4,7 @@ const router = express.Router();
 const {rejectUnauthenticated} = require('../modules/authentication-middleware')
 
 
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/', (req, res) => {
     pool.query(`SELECT "name", "holes", "location", "id" FROM "course";`)
         .then(results => res.send(results.rows))
         .catch(error => {
