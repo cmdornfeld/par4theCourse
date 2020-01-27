@@ -1,18 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 
-const styles = {
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-};
 
 class Courses extends Component{
 
@@ -33,7 +24,7 @@ class Courses extends Component{
               return (
                 <div className="course-card" key={course.id}>
                   <div className="card-background"></div>
-                  <CardContent>{course.name}, {course.location}, {course.holes}
+                  <CardContent><b>{course.name}, {course.location}, {course.holes}</b>
                   </CardContent>
                 </div>
               )
@@ -48,4 +39,4 @@ const putReduxStateOnProps = (reduxStore) => ({
   courses: reduxStore.courses,
 })
 
-export default connect(putReduxStateOnProps)(withStyles(styles)(Courses));
+export default connect(putReduxStateOnProps)(Courses);

@@ -77,7 +77,7 @@ class Scorecard extends Component {
     console.log('logging objectToSend:', objectToSend);
     console.log('Submitting info for round:', id);
     this.props.dispatch({type: 'UPDATE_ROUND', payload: {holeData: objectToSend, id: id}});
-    this.props.history.push('/home');
+    this.props.history.push('/new-round');
   }
 
   handleCancelOpen = () => {
@@ -113,7 +113,7 @@ class Scorecard extends Component {
       <>
       <div>
           {/* {JSON.stringify(this.state)} */}
-        <h1><b>Round Details</b></h1><br/>
+        <h1><b>Scorecard</b></h1><br/>
           {/* {JSON.stringify(this.props.round)}<br/>
           {JSON.stringify(this.props.round.length)} */}
           {/* <h3>Course: {this.props.round.name}</h3> */}
@@ -134,7 +134,8 @@ class Scorecard extends Component {
             <TableRow key={hole.id}>
               <TableCell>{hole.number}</TableCell>
               <TableCell>{hole.par}</TableCell>
-              <TableCell><input onChange={(event) => this.handleChange(event.target.value, `hole${hole.number}`, 'score')} type="number" /></TableCell>
+              <TableCell><input onChange={(event) => this.handleChange(event.target.value, `hole${hole.number}`, 'score')} type="number"
+                min="1" max="10" width="25"/></TableCell>
               <TableCell><input onChange={(event) => this.handleChange(event.target.value, `hole${hole.number}`, 'comments')}type="text" /></TableCell>
             </TableRow>
             )
@@ -142,7 +143,10 @@ class Scorecard extends Component {
         </TableBody>
       </Table>
       </div><br/>
-      <Button onClick={this.handleCancelOpen} variant="contained">Cancel Round</Button>
+      <div className="button-container" >
+      <Button onClick={this.handleCancelOpen} variant="contained" style={{backgroundColor: "#ff6666"}}>
+        Cancel Round
+      </Button>
       <Dialog open={this.state.deleteOpen} onClose={this.handleClose} aria-labelledby="cancel-dialog-title"
           aria-describedby="cancel-dialog-description">
         <DialogTitle id="cancel-dialog-title">{"Are you sure?"}</DialogTitle>
@@ -160,7 +164,9 @@ class Scorecard extends Component {
             </Button>
           </DialogActions>
       </Dialog>
-      <Button onClick={this.handleSubmitOpen} variant="contained">Submit Round</Button>
+      <Button onClick={this.handleSubmitOpen} variant="contained" style={{backgroundColor: "#11aa44"}}>
+        Submit Round
+      </Button>
       <Dialog open={this.state.submitOpen} onClose={this.handleClose} aria-labelledby="submit-dialog-title"
           aria-describedby="submit-dialog-description">
         <DialogTitle id="submit-dialog-title">{"Submit round?"}</DialogTitle>
@@ -178,7 +184,7 @@ class Scorecard extends Component {
             </Button>
           </DialogActions>
       </Dialog>
-      
+      </div>
       </>
     );
   }

@@ -36,7 +36,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
   }
 });
       
-router.get('/:id', (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   console.log('logging req.session.round:', req.params.id);
   
   let queryText = `SELECT "hole_course"."number", "hole_course"."par", "score", "comments", "hole_user"."id", "hole_user"."round_id", "course"."name"

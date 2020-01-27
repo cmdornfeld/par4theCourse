@@ -44,7 +44,7 @@ class RegisterPage extends Component {
           <h1>Register</h1>
           <div>
             <label htmlFor="username">
-              Username:
+              <b>Username:</b>
               <input
                 type="text"
                 name="username"
@@ -55,7 +55,7 @@ class RegisterPage extends Component {
           </div>
           <div>
             <label htmlFor="password">
-              Password:
+              <b>Password:</b>
               <input
                 type="password"
                 name="password"
@@ -79,7 +79,7 @@ class RegisterPage extends Component {
             className="link-button"
             onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
           >
-            Login
+            <b>Login</b>
           </button>
         </center>
       </div>
