@@ -49,6 +49,8 @@ class Details extends Component {
         {JSON.stringify(this.props.total)} */}
         <h3>Total Score: {this.props.total.score}</h3>
         <h3>Total Par: {this.props.total.par}</h3>
+        <h3>To Par: {this.props.total.par - this.props.total.score < 0 ? +this.props.total.score - this.props.total.par : 
+          this.props.total.score - this.props.total.par}</h3>
         <div className="button-container" >
           <Button onClick={this.handleClickOpen} variant="contained" style={{backgroundColor: "#ff6666"}}>
             Delete Round
