@@ -94,17 +94,6 @@ select {
     text-shadow: 0 0 3px black;
 }
 
-.start-button {
-    display: block;
-    margin: 8px auto;
-    background-color: rgb(32, 178, 105);
-    font-size: 30px;
-    border: none;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 8px;
-}
-
 .round-table {
     padding: 0 5%;
     
@@ -115,6 +104,11 @@ select {
 
 h1, h3 {
     text-align: center;
+}
+
+.button-container {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 /* @media screen and (max-width: 480px) {
