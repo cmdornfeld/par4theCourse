@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
 
-class InfoPage extends Component {
+class UserPage extends Component {
   componentDidMount() {
     this.props.dispatch({type: 'GET_DETAILS'});
   }
@@ -23,9 +24,11 @@ class InfoPage extends Component {
     return (
       <div>
         <h1>Hi, {this.props.user.username}</h1><br/>
-          <button onClick={this.goToSetRoundDetails} className="start-button">
-            Play golf
-          </button><br/>
+          <div className="button-container" >
+            <Button onClick={this.goToSetRoundDetails} variant="contained" style={{backgroundColor: "#11aa44", fontSize: "20px"}}>
+              Play golf
+            </Button>
+          </div>
           {/* {JSON.stringify(this.props.user)}<br/>
           {JSON.stringify(this.props.details)} */}
           <h3>Round History</h3>
@@ -33,7 +36,7 @@ class InfoPage extends Component {
           {this.props.details.map(round => (
             <div className="round-card" key={round.round_id}  onClick={(event) => this.goToRoundDetails(event, round.round_id)}>
               <CardContent >
-                {round.score}<br/>{round.name}<br/>
+                <b>{round.score}</b><br/><b>{round.name}</b>
               </CardContent>
             </div>
           ))}
@@ -48,4 +51,4 @@ const putReduxStateOnProps = (reduxStore) => ({
   user: reduxStore.user
 })
 
-export default connect(putReduxStateOnProps)(InfoPage);
+export default connect(putReduxStateOnProps)(UserPage);

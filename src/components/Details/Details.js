@@ -44,12 +44,15 @@ class Details extends Component {
       <>
       <div>
         <h1><b>Round Details</b></h1><br/>
-          {/* {JSON.stringify(this.props.user)}<br/>
-          {JSON.stringify(this.props.details)}<br/>
-          {JSON.stringify(this.props.total)} */}
-          <h3>Total Score: {this.props.total.score}</h3>
-          <h3>Total Par: {this.props.total.par}</h3>
-          <Button onClick={this.handleClickOpen} variant="contained">Delete Round</Button>
+        {/* {JSON.stringify(this.props.user)}<br/>
+        {JSON.stringify(this.props.details)}<br/>
+        {JSON.stringify(this.props.total)} */}
+        <h3>Total Score: {this.props.total.score}</h3>
+        <h3>Total Par: {this.props.total.par}</h3>
+        <div className="button-container" >
+          <Button onClick={this.handleClickOpen} variant="contained" style={{backgroundColor: "#ff6666"}}>
+            Delete Round
+          </Button>
           <Dialog open={this.state.open} onClose={this.handleClose}>
             <DialogTitle>{"Are you sure?"}</DialogTitle>
             <DialogContent>
@@ -66,7 +69,10 @@ class Details extends Component {
               </Button>
             </DialogActions>
           </Dialog>
-          <Button onClick={() => this.props.history.push('/home')} variant="contained">Return Home</Button>
+          <Button onClick={() => this.props.history.push('/home')} variant="contained" style={{backgroundColor: "#11aa44"}}>
+            Return Home
+          </Button>
+        </div>
       </div>
       <div className="round-table">
       <Table>

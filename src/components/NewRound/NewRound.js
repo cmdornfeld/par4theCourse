@@ -5,11 +5,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 
-const styles = {
-  pos: {
-    marginBottom: 12,
-  },
-};
 
 class NewRound extends Component {
 
@@ -52,13 +47,14 @@ class NewRound extends Component {
 
   render() {
     return (
+      <>
       <div className="round-details-box">
         {/* {JSON.stringify(this.state)}
         {JSON.stringify(this.props.user)} */}
-        <h2>Round Details</h2> {/*{JSON.stringify(this.props.courses)}*/}
+        <h2>Set Round Details</h2> {/*{JSON.stringify(this.props.courses)}*/}
         <br/>
         <select onChange={(event) => {this.selectCourse(event)}}>
-          <option value="default">Please choose your course</option>
+          <option value="default">Please select your course</option>
           {this.props.courses.map(course => (
             <option key={course.id} value={course.id}>
               {course.name}
@@ -66,22 +62,28 @@ class NewRound extends Component {
           ))}
         </select>
         <br/>
-          <label>9 holes</label><input onChange={(event) => {this.selectHoles(event)}} type="radio" name="holes" value="9"/>
-          <label>18 holes</label><input onChange={(event) => {this.selectHoles(event)}} type="radio" name="holes" value="18"/>
+          <label><b>9 holes</b></label><input onChange={(event) => {this.selectHoles(event)}} type="radio" name="holes" value="9"/>
+          <label><b>18 holes</b></label><input onChange={(event) => {this.selectHoles(event)}} type="radio" name="holes" value="18"/>
         <br/>
         {/* {JSON.stringify(this.props.tees)} */}
         <select onChange={(event) => {this.selectTee(event)}}>
-          <option value="default">Please choose your tee</option>
+          <option value="default">Please select your tee</option>
           {this.props.tees.map(tee => (
             <option key={tee.id} value={tee.id}>
-              {tee.name} (distance: {tee.distance})
+              {tee.name} (distance: {tee.distance} yards)
             </option>
           ))}
         </select>
-        <Button onClick={this.startNewRound} variant="contained">
+      </div>
+      <div className="button-container">
+        <Button onClick={() => this.props.history.push('/home')} variant="contained" style={{backgroundColor: "#ff6666"}}>
+          Return Home
+        </Button>
+        <Button onClick={this.startNewRound} variant="contained" style={{backgroundColor: "#11aa44"}}>
           Start Round
         </Button>
       </div>
+      </>
     );
   }
 }
@@ -92,4 +94,4 @@ const putReduxStateOnProps = (reduxStore) => ({
    user: reduxStore.user
 })
 
-export default connect(putReduxStateOnProps)(withStyles(styles)(NewRound));
+export default connect(putReduxStateOnProps)(NewRound);
