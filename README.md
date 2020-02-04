@@ -8,6 +8,21 @@ _Duration: 2 Week Sprint_
 
 For my Prime Solo Project, I wanted to combine the software development skills I have learned with one of my biggest passions; the wonderful game of golf.  Par4theCourse is a mobile scorecard application which allows users to create a scorecard for all of their new rounds of golf.  Users can also track their entire history of rounds, view details of a specific round, and view all of the participating courses.
 
+## Screen Shots
+
+#### Login View
+
+![Add Entry Page](par4theCourse_screenshot_login.png)
+
+#### Scorecard View
+
+![Add Entry Page](par4theCourse_screenshot_scorecard.png)
+
+#### Round Details View
+
+![Add Entry Page](par4theCourse_screenshot_details.png)
+
+
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/en/)
